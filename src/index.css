@@ -11,6 +11,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Add our custom variables */
+  --success-color: #22c55e;
+  --danger-color: #ef4444;
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 a {
@@ -18,17 +26,16 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
 body {
-  background: linear-gradient(
-    180deg,
-    rgb(32, 44, 136) 0%,
-    rgba(9, 9, 121, 1) 15%,
-    rgba(0, 2, 18, 1) 100%
-  );
+  background: linear-gradient(180deg,
+      rgb(32, 44, 136) 0%,
+      rgba(9, 9, 121, 1) 15%,
+      rgba(0, 2, 18, 1) 100%);
   background-size: cover;
   background-repeat: no-repeat no-repeat;
   background-position: center center;
@@ -54,9 +61,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -67,9 +76,11 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
@@ -117,4 +128,162 @@ tbody tr:nth-child(odd) {
 .table {
   width: 80vw;
   table-layout: fixed;
+}
+
+/* Candidate specific styles */
+.candidate-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  gap: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+}
+
+.candidate-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px -1px rgba(0, 0, 0, 0.15);
+}
+
+.candidate-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.candidate-info {
+  flex: 1;
+  color: #fff;
+  min-width: 0; 
+  padding-right: 50px; 
+}
+
+.candidate-info h2 {
+  margin: 0 0 10px 0;
+  color: #fff;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.candidate-info p {
+  margin: 8px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.candidate-actions {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.accept-btn,
+.reject-btn {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.accept-btn {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.reject-btn {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.accept-btn:hover,
+.reject-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Grid layout for saved candidates */
+.candidates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Loading and error states */
+.loading, .error {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #fff;
+}
+
+.error-message {
+  color: var(--danger-color);
+  margin: 10px 0;
+  text-align: center;
+}
+
+.no-candidates-message {
+  color: #fff;
+  text-align: center;
+  font-size: 1.2em;
+  margin: 40px 0;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .candidate-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    padding-bottom: 80px; /* Make room for buttons at bottom */
+  }
+  
+  .candidate-info {
+    padding-right: 0;
+  }
+  
+  .candidate-actions {
+    flex-direction: row;
+    bottom: 20px;
+    top: auto;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+
+/* Add saved-candidates container styles */
+.saved-candidates {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
