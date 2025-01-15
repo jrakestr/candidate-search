@@ -1,33 +1,66 @@
-# React + TypeScript + Vite
+# GitHub Candidate Search
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application that helps you discover and save potential GitHub candidates for recruitment. Built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-* [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md), which uses [Babel](https://babeljs.io/) for Fast Refresh
-* [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc), which uses [SWC](https://swc.rs/) for Fast Refresh
+- Search through GitHub users and view their profiles
+- Quick accept/reject interface for efficient candidate review
+- Save interesting candidates for later review
+- Persistent storage of saved candidates
+- Detailed profile information including:
+  - Name and username
+  - Location
+  - Profile picture
+  - Email
+  - GitHub URL
+  - Company
 
-## Expanding the ESLint configuration
+## Setup
 
-If you're developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Clone this repository
+2. Install dependencies:
 
-* Configure the top-level `parserOptions` property as follows:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+npm install
 ```
 
-* Replace `plugin:@typescript-eslint/recommended` with `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`.
-* Optionally, add `plugin:@typescript-eslint/stylistic-type-checked`.
-* Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` and `plugin:react/jsx-runtime` to the `extends` list.
+3. Create a GitHub Personal Access Token:
 
----
+   - Go to GitHub Settings → Developer Settings → Personal Access Tokens → Fine-grained tokens
+   - Generate a new token (no additional permissions needed)
+   - Copy your token immediately after creation
+
+4. Set up your environment:
+
+   - Create a `.env` file in the environment folder
+   - Add your token: `VITE_GITHUB_TOKEN=your_token_here`
+
+5. Start the development server:
+
+```bash
+npm run dev
+```
+
+## Deployment
+
+This application can be deployed to Render. Make sure to:
+
+- Configure your environment variables in Render's dashboard
+- Add `VITE_GITHUB_TOKEN` with your GitHub token
+
+## Tech Stack
+
+- React
+- TypeScript
+- Vite
+- GitHub REST API
+- Local Storage for data persistence
+
+## Contributing
+
+Feel free to submit issues and pull requests to help improve this project.
+
+## License
+
 © 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
