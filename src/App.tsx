@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import Nav from "./components/Nav";
-import { searchGithub } from "./api/API";
 
 function App() {
 	return (
